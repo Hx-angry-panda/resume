@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>我的个人简历</title>
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="./main.css">
+    <link rel="stylesheet" href="./loading.css">
     <script src="https://at.alicdn.com/t/font_1067831_vn7skewo9j.js"></script>
     <style type="text/css">
         .icon {
@@ -15,6 +16,9 @@
     </style>
 </head>
 <body>
+    <div id="siteWelcome" class="siteWelcome active">
+        <div class="wrapper"></div>
+    </div>
     <div class="topNavBar clearfix">
         <div class="topNavBar-inner">
             <a class="logo" href="#" alt="logo">
@@ -179,5 +183,8 @@
             </div>
         </div>
     </section>
+    <script>
+        setTimeout(function(){siteWelcome.classList.remove('active')},2000) //定时2秒后移除id为siteWelcome的标签的名为active的class
+    </script>
 </body>
 </html>
