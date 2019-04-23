@@ -19,7 +19,7 @@
     <div id="siteWelcome" class="siteWelcome active">
         <div class="wrapper"></div>
     </div>
-    <div class="topNavBar clearfix">
+    <div id="topNavBar" class="topNavBar clearfix">
         <div class="topNavBar-inner">
             <a class="logo" href="#" alt="logo">
                 <span class="rs">RS</span>
@@ -185,6 +185,13 @@
     </section>
     <script>
         setTimeout(function(){siteWelcome.classList.remove('active')},2000) //定时2秒后移除id为siteWelcome的标签的名为active的class
+        window.onscroll = function () {
+            if (scrollY > 0) {
+                topNavBar.classList.add('sticky')
+            } else {
+                topNavBar.classList.remove('sticky')
+            }
+        } 
     </script>
 </body>
 </html>
