@@ -19,25 +19,35 @@
     <div id="siteWelcome" class="siteWelcome active">
         <div class="wrapper"></div>
     </div>
-    <div class="topNavBar clearfix">
+    <div id="topNavBar" class="topNavBar clearfix">
         <div class="topNavBar-inner">
             <a class="logo" href="#" alt="logo">
                 <span class="rs">RS</span>
                 <span class="card">card</span>
             </a>
-            <nav>
+            <nav class="menu">
                 <ul class="clearfix">
                     <li>
-                        <a href="#">关于</a>
+                        <a href="#siteAbout">关于</a>
                    </li>
                     <li>
-                        <a href="#">技能</a>
+                        <a href="#siteSkills">技能</a>
                     </li>
-                    <li>
-                        <a href="#">作品</a>
+                    <li class="menuTigger">
+                        <a href="#siteWorks">作品</a>
+                        <ul class="submenu">
+                            <li>作品1</li>
+                            <li>作品2</li>
+                            <li>作品3</li>
+                        </ul>
                     </li>
-                    <li>
+                    <li class="menuTigger">
                         <a href="#">博客</a>
+                        <ul class="submenu">
+                            <li>博客1</li>
+                            <li>博客2</li>
+                            <li>博客3</li>
+                        </ul>
                     </li>
                     <li>
                         <a href="#">日历</a>
@@ -56,7 +66,7 @@
         <div class="mask"></div>
     </div>
     <main>
-        <div class="userCard">
+        <div class="userCard" id="siteAbout">
             <div class="pictureAndText clearfix">
                 <div class="picture">
                     <img src="./img/avatar.jpg" alt="头像">
@@ -107,7 +117,7 @@
             技能：前端开发，小程序开发，Node.js开发，PLC开发，单片机开发。
         </p>
     </main>
-    <section class="skill">
+    <section class="skill" id="siteSkills">
         <h2>技能</h2>
         <ol class="clearfix">
             <li>
@@ -148,7 +158,7 @@
             </li>
         </ol>
     </section>
-    <section class="portfolio">
+    <section class="portfolio" id="siteWorks">
         <h2>作品集</h2>
         <nav>
             <ol class="clearfix">
@@ -184,7 +194,34 @@
         </div>
     </section>
     <script>
-        setTimeout(function(){siteWelcome.classList.remove('active')},2000) //定时2秒后移除id为siteWelcome的标签的名为active的class
+        setTimeout(function () { siteWelcome.classList.remove('active') }, 2000) //定时2秒后移除id为siteWelcome的标签的名为active的class
+        window.onscroll = function () {
+            if (scrollY > 0) {
+                topNavBar.classList.add('sticky')
+            } else {
+                topNavBar.classList.remove('sticky')
+            }
+        }
+        let liTags = document.querySelectorAll('nav.menu > ul > li') //找到该<li>
+        for (let i = 0; i < liTags.length; i++) {
+            liTags[i].onmouseenter = function (x) {
+                x.currentTarget.classList.add('active')
+            }
+            liTags[i].onmouseleave = function (x) {
+                x.currentTarget.classList.remove('active')
+            }
+        }
+        let aTags = document.querySelectorAll('nav.menu > ul > li > a')
+        for (let i = 0; i < aTags.length; i++) {
+            aTags[i].onclick = function (x) {
+                x.preventDefault()
+                let a = x.currentTarget //<a>标签
+                let href = a.getAttribute('href') //#siteAbout
+                let element = document.querySelector(href) //id为siteAbout 的标签
+                let top = element.offsetTop //页面最顶部到id为siteAbout 的标签的高度
+                window.scrollTo(0, top - 82) //滚动到此位置
+            }
+        }
     </script>
 </body>
 </html>

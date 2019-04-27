@@ -1,44 +1,44 @@
 .siteWelcome.active{
-    background: #888888;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  background: #888888;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .siteWelcome{
-    display: none;
+  display: none;
 }
 .wrapper{
-    width: 200px;
-    height: 200px;
-    position: relative;   
+  width: 200px;
+  height: 200px;
+  position: relative;   
 }
-.wrapper::before,.wrapper::after{
-    content: '';
-    width: 0px;
-    height: 0px;
-    background: black;
-    border-radius: 50%;
-    margin: auto;
-    position: absolute;
-    left:0;
-    top:0;
-    right: 0;
-    bottom: 0;
-    animation: s 2s linear infinite;
+.wrapper::before,.wrapper::after{ /* ::before & ::after 是行内元素，不能显示宽高，加了绝对定位能显示 */
+  content: '';
+  width: 0px;
+  height: 0px;
+  background: black;
+  border-radius: 50%;
+  margin: auto;
+  position: absolute;
+  left:0;
+  top:0;
+  right: 0;
+  bottom: 0;
+  animation: s 2s linear infinite;
 }
 .wrapper::after{
-    animation-delay: 0.85s;
+  animation-delay: 0.85s;
 }
 @keyframes s{
-    from{
-      width: 0px; height: 0px;opacity: 1;}
-    to{
-      width:100px;height:100px;
-      opacity: 0;}
+  from{
+    width: 0px; height: 0px;opacity: 1;}
+  to{
+    width:100px;height:100px;
+    opacity: 0;}
 }
