@@ -16,9 +16,6 @@
     </style>
 </head>
 <body>
-    <div id="siteWelcome" class="siteWelcome active">
-        <div class="wrapper"></div>
-    </div>
     <div id="topNavBar" class="topNavBar clearfix">
         <div class="topNavBar-inner">
             <a class="logo" href="#" alt="logo">
@@ -66,7 +63,7 @@
         <div class="mask"></div>
     </div>
     <main>
-        <div class="userCard" id="siteAbout">
+        <div data-x class="userCard" id="siteAbout">
             <div class="pictureAndText clearfix">
                 <div class="picture">
                     <img src="./img/avatar.jpg" alt="头像">
@@ -117,7 +114,7 @@
             技能：前端开发，小程序开发，Node.js开发，PLC开发，单片机开发。
         </p>
     </main>
-    <section class="skill" id="siteSkills">
+    <section data-x class="skill" id="siteSkills">
         <h2>技能</h2>
         <ol class="clearfix">
             <li>
@@ -158,7 +155,7 @@
             </li>
         </ol>
     </section>
-    <section class="portfolio" id="siteWorks">
+    <section data-x class="portfolio" id="siteWorks">
         <h2>作品集</h2>
         <nav>
             <ol class="clearfix">
@@ -193,14 +190,40 @@
             </div>
         </div>
     </section>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/16.3.5/Tween.min.js"></script>
     <script>
-        setTimeout(function () { siteWelcome.classList.remove('active') }, 2000) //定时2秒后移除id为siteWelcome的标签的名为active的class
+        let specialTags = document.querySelectorAll('[data-x]')
+        for (let i = 0; i < specialTags.length; i++){
+            specialTags[i].classList.add('offset')
+        }
+        setTimeout(function (){
+            findClosest()
+        },50)
         window.onscroll = function () {
             if (scrollY > 0) {
                 topNavBar.classList.add('sticky')
             } else {
                 topNavBar.classList.remove('sticky')
             }
+            findClosest()
+        }
+        function findClosest (){
+            let specialTags = document.querySelectorAll('[data-x]')
+            let minIndex = 0
+            for (let i = 1; i < specialTags.length; i++){ //屏幕顶部到元素的距离近的那个元素，则高亮导航栏
+                if (Math.abs(specialTags[i].offsetTop - window.scrollY) < Math.abs(specialTags[minIndex].offsetTop - window.scrollY)){
+                    minIndex = i
+                }
+            }
+            specialTags[minIndex].classList.remove('offset')
+            let id = specialTags[minIndex].id
+            let a = document.querySelector('a[href="#'+ id +'"]') //('a[href=#'+ id +']')会出错，要"#siteAbout"才不出错
+            let li = a.parentNode //<a>的父级
+            let bortherAndMe = li.parentNode.children //li的父级的子元素，即<li>的兄弟元素包括<li>
+            for (let i = 0; i < bortherAndMe.length; i++){
+                bortherAndMe[i].classList.remove('highlight')
+            }
+            li.classList.add('highlight')   
         }
         let liTags = document.querySelectorAll('nav.menu > ul > li') //找到该<li>
         for (let i = 0; i < liTags.length; i++) {
@@ -219,9 +242,33 @@
                 let href = a.getAttribute('href') //#siteAbout
                 let element = document.querySelector(href) //id为siteAbout 的标签
                 let top = element.offsetTop //页面最顶部到id为siteAbout 的标签的高度
-                window.scrollTo(0, top - 82) //滚动到此位置
-            }
+                let currentTop = window.scrollY //页面当前的高度
+                let targetTop = top - 82 //元素距离页面顶部的高度
+                let s = Math.abs(currentTop - targetTop) 
+                let t = 250*s/100 //滑动时间 250ms走100px，则s走的时间
+                if (t > 500){
+                    t = 500
+                }
+                function animate(time) {
+                    requestAnimationFrame(animate);
+                    TWEEN.update(time);
+                }
+                requestAnimationFrame(animate);
+                var coords = {
+                    y: currentTop
+                };
+                var tween = new TWEEN.Tween(coords)
+                    .to({
+                        y: targetTop
+                    }, t)
+                    .easing(TWEEN.Easing.Quadratic.InOut)
+                    .onUpdate(function () {
+                        window.scrollTo(0,coords.y);
+                    })
+                    .start();
+            }    
         }
+        
     </script>
 </body>
 </html>

@@ -17,6 +17,13 @@ ul,ol{ list-style: none; }
     display: block;
     clear: both;
 }
+[data-x].offset{
+    transform: translateY(100px);
+}
+[data-x]{
+    transform: translateY(0);
+    transition: all 0.5s
+}
 .topNavBar{
     padding: 20px 0px 20px 0px;
     position: fixed;
@@ -58,7 +65,8 @@ ul,ol{ list-style: none; }
     display: block;
     position: relative;
 }
-nav.menu > ul > li.active::after{
+nav.menu > ul > li.active a::after,
+nav.menu > ul > li.highlight a::after{
     content: '';
     background: #e06567;
     width: 100%;
@@ -226,7 +234,7 @@ section > h2{
     font-size: 34px;
     color: #3d4451;
     text-align: center;
-    margin-top: 60px;
+    margin-top: 100px;
 }
 section > ol{
     background: white;
@@ -245,12 +253,18 @@ section .progressBar{
     height: 5px;
     background: #FAE1E1;
     margin: 4px 0 40px 0;
+    overflow: hidden;
 }
 section .progressBar .progress{
     border-radius: 2px;
     height: 100%;
     background: #E6686A;
     width: 70%;
+    transform: translateY(0);
+    transition: all 1s;
+}
+section.offset .progressBar .progress{
+    transform: translateX(-100%);
 }
 section > ol > li > h3{
     font-size: 14px;
