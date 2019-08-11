@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <title>我的个人简历</title>
     <link rel="stylesheet" href="./main.css">
-    <link rel="stylesheet" href="./loading.css">
     <script src="https://at.alicdn.com/t/font_1067831_vn7skewo9j.js"></script>
     <style type="text/css">
         .icon {
@@ -14,6 +13,7 @@
         overflow: hidden;
         }
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.3.0/css/swiper.min.css">
 </head>
 <body>
     <div id="topNavBar" class="topNavBar clearfix">
@@ -157,39 +157,20 @@
     </section>
     <section data-x class="portfolio" id="siteWorks">
         <h2>作品集</h2>
-        <nav>
-            <ol class="clearfix">
-                <li id="portfolio1">所有</li>
-                <li id="portfolio2">框架</li>
-                <li id="portfolio3">原生JS&amp;CSS</li>
-            </ol>
-            <div id="portfolioBar" class="bar state-1">
-                <div class="bar-inner"></div>
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <img class="swiper-slide" src="./img/nav.png">
+                <img class="swiper-slide" src="./img/canvas.jpg">
+                <img class="swiper-slide" src="./img/apple-slide-show.png">
             </div>
-        </nav>
-        <script>
-            portfolio1.onclick = function () {
-                portfolioBar.className = 'bar state-1'
-            }
-            portfolio2.onclick = function () {
-                portfolioBar.className = 'bar state-2'
-            }
-            portfolio3.onclick = function () {
-                portfolioBar.className = 'bar state-3'
-            }
-        </script>
-        <div class="jobs">
-            <div class="big" style="top:0; left:0;">
-                <img src="./img/1.jpg" alt="#">
-            </div>
-            <div class="small" style="top:0; left:645px;">
-                <img src="./img/2.jpg" alt="#">
-            </div>
-            <div class="small" style="top:312px; left:645px;">
-                <img src="./img/3.jpg" alt="#">
-            </div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+        </div>
+
         </div>
     </section>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.3.0/js/swiper.min.js"></script>
+    <script src="./JS/swiper.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/16.3.5/Tween.min.js"></script>
     <script>
         let specialTags = document.querySelectorAll('[data-x]')
