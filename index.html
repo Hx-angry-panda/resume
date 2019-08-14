@@ -169,12 +169,27 @@
             </div>
         </div>
     </section>
+    <section class="message">
+        <h2>留言</h2>
+        <ol id="messageBoard"></ol>
+        <form action="" id="messageForm">
+            <label>姓名：</label>
+            <input type="text" name="name">
+            <label>内容：</label>
+            <input type="text" name="content">
+            <input type="submit">
+        </form>
+    </section>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.3.0/js/swiper.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/16.3.5/Tween.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/leancloud-storage@3.15.0/dist/av-min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/leancloud-realtime@4.3.1/dist/realtime.browser.min.js"></script>
+    <!-- 模块化 -->
     <script src="./JS/init-swiper.js"></script>
     <script src="./JS/sticky-topbar.js"></script>
     <script src="./JS/nav-menu.js"></script>
     <script src="./JS/auto-slide-up.js"></script>
     <script src="./JS/tween&nav-menu-click.js"></script>
+    <script src="./JS/message.js"></script>
 </body>
 </html>
